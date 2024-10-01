@@ -1,0 +1,17 @@
+$ cat list.txt
+48 -2 6 12 0 -4
+
+$ node monProgramme.js list.txt
+Tri à bulle: 15 comparaisons - [-4, -2, 0, 6, 12, 48]
+Tri par insertion: 11 comparaisons - [-4, -2, 0, 6, 12, 48]
+Tri par sélection: 15 comparaisons - [-4, -2, 0, 6, 12, 48]
+Tri rapide: 11 comparaisons - [-4, -2, 0, 6, 12, 48]
+
+$ cat list.txt
+8763 -133 246 -714 42 42 2339 -42 1506 651 -321
+
+$ node monProgramme.js list.txt
+Tri à bulle: 55 comparaisons - [-714, -321, -133, -42, 42, 42, 246, 651, 1506, 2339, 8763]
+Tri par insertion: 29 comparaisons - [-714, -321, -133, -42, 42, 42, 246, 651, 1506, 2339, 8763]
+Tri par sélection: 55 comparaisons - [-714, -321, -133, -42, 42, 42, 246, 651, 1506, 2339, 8763]
+Tri rapide: 31 comparaisons - [-714, -321, -133, -42, 42, 42, 246, 651, 1506, 2339, 8763]

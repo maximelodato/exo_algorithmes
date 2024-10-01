@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithmes de Tri</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Algorithmes de Tri</h1>
+        <p>Entrez une liste de nombres séparés par des espaces pour les trier.</p>
+
+        <form id="sortForm">
+            <input type="text" id="numberList" placeholder="Ex: 48 -2 6 12 0 -4" required>
+            <button type="submit">Trier</button>
+        </form>
+
+        <div id="results" class="results"></div>
+    </div>
+
+    <script>
+        document.getElementById('sortForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            const input = document.getElementById('numberList').value;
+            const arr = input.split(' ').map(Number); // Convertit l'entrée en tableau de nombres
+
+            // Tri à bulles
+            const bubbleSort = (arr) => {
+                let comparisons = 0;
+                const n = arr.length;
+                for (let i = 0; i < n - 1; i++) {
+                    for (let j = 0; j < n - i - 1; j++) {
+                        comparisons++;
+                        if (arr[j] > arr[j + 1]) {
+                            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                        }
+                    }
+                }
+                return { sorted: arr, comparisons };
+            };
+
+            // Tri par insertion
+            const insertionSort = (arr) => {
+                let comparisons = 0;
+                for (let i = 1; i < arr.length; i++) {
+                    let key = arr[i];
+                    let j = i - 1;
+                    while (j >= 0 && arr[j] > key) {
+                        comparisons++;
+                        arr[j + 1] = arr[j];
+                        j--;
+                    }
+                    comparisons++;
+                    arr[j + 1] = key;
+                }
+                return { sorted: arr, comparisons };
+            };
+
+            // Tri par sélection
+            const selectionSort = (arr) => {
+                let comparisons = 0;
+                for (let i = 0; i < arr.length - 1; i++) {
+                    let minIdx = i;
+                    for (let j = i + 1; j < arr.length; j++) {
+                        comparisons++;
+                        if (arr[j] < arr[minIdx]) {
+                            minIdx = j;
+                        }
+                    }
+                    [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+                }
+                return { sorted: arr, comparisons };
+            };
+
+            // Tri rapide
+            const quickSort = (arr, low = 0, high = arr.length - 1) => {
+                let comparisons = 0;
+                if (low < high) {
+                    const pi = partition(arr, low, high);
+                    comparisons += quickSort(arr, low, pi - 1).comparisons;
+                    comparisons += quickSort(arr, pi + 1, high).comparisons;
+                }
+                return { sorted: arr, comparisons };
+            };
+
+            const partition = (arr, low, high) => {
+                const pivot = arr[low];
+                let left = low + 1;
+                let right = high;
+                while (left <= right) {
+                    while (left <= right && arr[left] <= pivot) left++;
+                    while (left <= right && arr[right] > pivot) right--;
+                    if (left < right) {
+                        [arr[left], arr[right]] = [arr[right], arr[left]];
+                    }
+                }
+                [arr[low], arr[right]] = [arr[right], arr[low]];
+                return right;
+            };
+
+            // Exécution des algorithmes
+            const bubbleResult = bubbleSort([...arr]);
+            const insertionResult = insertionSort([...arr]);
+            const selectionResult = selectionSort([...arr]);
+            const quickResult = quickSort([...arr]);
+
+            // Affichage des résultats
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h2>Résultats</h2>
+                <p>Tri à bulle: ${bubbleResult.comparisons} comparaisons - [${bubbleResult.sorted}]</p>
+                <p>Tri par insertion: ${insertionResult.comparisons} comparaisons - [${insertionResult.sorted}]</p>
+                <p>Tri par sélection: ${selectionResult.comparisons} comparaisons - [${selectionResult.sorted}]</p>
+                <p>Tri rapide: ${quickResult.comparisons} comparaisons - [${quickResult.sorted}]</p>
+            `;
+        });
+    </script>
+</body>
+</html>
