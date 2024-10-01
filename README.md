@@ -16,6 +16,7 @@ Ce projet implémente plusieurs algorithmes de tri en JavaScript : Tri à bulle,
 
 - Node.js (version 12 ou supérieure)
 - Un navigateur Web moderne
+- http://127.0.0.1:3000/index.html
 
  
  ## Exemple d'entrée 1
