@@ -15,3 +15,6 @@ Tri à bulle: 55 comparaisons - [-714, -321, -133, -42, 42, 42, 246, 651, 1506, 
 Tri par insertion: 29 comparaisons - [-714, -321, -133, -42, 42, 42, 246, 651, 1506, 2339, 8763]
 Tri par sélection: 55 comparaisons - [-714, -321, -133, -42, 42, 42, 246, 651, 1506, 2339, 8763]
 Tri rapide: 31 comparaisons - [-714, -321, -133, -42, 42, 42, 246, 651, 1506, 2339, 8763]
+
+$ node monProgramme.js list.txt
+Tri fusion: X comparaisons - [-4, -2, 0, 6, 12, 48]

@@ -96,6 +96,58 @@ class Sorter {
     [arr[low], arr[right]] = [arr[right], arr[low]]; // Mettre le pivot à sa position finale
     return { pi: right, comp: comparisons };
   }
+
+  // Tri fusion (merge sort)
+  mergeSort() {
+    const { arr, comparisons } = this._mergeSort(this.arr);
+    this.arr = arr;
+    return comparisons;
+  }
+
+  _mergeSort(arr) {
+    if (arr.length <= 1) {
+      return { arr, comparisons: 0 };
+    }
+
+    const mid = Math.floor(arr.length / 2);
+    const leftPart = arr.slice(0, mid);
+    const rightPart = arr.slice(mid);
+
+    // Tri récursif des deux moitiés
+    const { arr: leftSorted, comparisons: leftComparisons } = this._mergeSort(leftPart);
+    const { arr: rightSorted, comparisons: rightComparisons } = this._mergeSort(rightPart);
+
+    // Fusion des deux sous-tableaux triés
+    const { arr: mergedArr, comparisons: mergeComparisons } = this._merge(leftSorted, rightSorted);
+
+    return {
+      arr: mergedArr,
+      comparisons: leftComparisons + rightComparisons + mergeComparisons,
+    };
+  }
+
+  _merge(left, right) {
+    let result = [];
+    let comparisons = 0;
+    let i = 0;
+    let j = 0;
+
+    while (i < left.length && j < right.length) {
+      comparisons++;
+      if (left[i] <= right[j]) {
+        result.push(left[i]);
+        i++;
+      } else {
+        result.push(right[j]);
+        j++;
+      }
+    }
+
+    // Ajouter les éléments restants de chaque sous-tableau
+    result = result.concat(left.slice(i)).concat(right.slice(j));
+
+    return { arr: result, comparisons };
+  }
 }
 
 // Fonction pour lire le fichier et extraire les nombres
@@ -147,6 +199,11 @@ function main() {
   sorter.arr = [...originalArray];
   comparisons = sorter.quickSort();
   console.log(`Tri rapide: ${comparisons} comparaisons - [${sorter.arr}]`);
+
+  // Réinitialiser le tableau
+  sorter.arr = [...originalArray];
+  comparisons = sorter.mergeSort();
+  console.log(`Tri fusion: ${comparisons} comparaisons - [${sorter.arr}]`);
 }
 
 // Exécution du programme principal
