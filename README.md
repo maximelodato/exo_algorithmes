@@ -29,7 +29,7 @@ Tri à bulle: 15 comparaisons - [-4, -2, 0, 6, 12, 48]
 Tri par insertion: 11 comparaisons - [-4, -2, 0, 6, 12, 48]
 Tri par sélection: 15 comparaisons - [-4, -2, 0, 6, 12, 48]
 Tri rapide: 11 comparaisons - [-4, -2, 0, 6, 12, 48]
-
+Tri fusion: 11 comparaisons - [-4,-2,0,6,12,48]
 ## Exemple d'entrée 2
  
  8763 -133 246 -714 42 42 2339 -42 1506 651 -321
@@ -40,3 +40,4 @@ Tri à bulle: 55 comparaisons - [-714,-321,-133,-42,42,42,246,651,1506,2339,8763
 Tri par insertion: 39 comparaisons - [-714,-321,-133,-42,42,42,246,651,1506,2339,8763]
 Tri par sélection: 55 comparaisons - [-714,-321,-133,-42,42,42,246,651,1506,2339,8763]
 Tri rapide: 37 comparaisons - [-714,-321,-133,-42,42,42,246,651,1506,2339,8763]
+Tri fusion: 29 comparaisons - [-714,-321,-133,-42,42,42,246,651,1506,2339,8763]
